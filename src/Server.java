@@ -86,4 +86,27 @@ public class Server extends JFrame{
         }while (!message.equals("CLIENT - END"));
     }
 
+    //close streams and sockets after you are done chatting
+    private void closeCrap(){
+        showMessage("\n Closing connections... \n");
+        ableToType(false);
+        try{
+            output.close();
+            input.close();
+            connection.close();
+        }catch (IOException ioException){
+            ioException.printStackTrace();
+        }
+    }
+
+    //send message to client
+    private void sendMessage(String message){
+        try{
+            output.writeObject("SERVER - " + message);
+            output.flush();
+            showMessage("\n SERVER - " + message);
+        }catch (IOException ioException){
+            chatWindow.append("\n ERROR: DUDE I CANT SEND THAT MESSAGE");
+        }
+    }
 }
