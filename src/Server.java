@@ -109,4 +109,30 @@ public class Server extends JFrame{
             chatWindow.append("\n ERROR: DUDE I CANT SEND THAT MESSAGE");
         }
     }
+
+    //updates chatWindow
+    private void showMessage(final String text){
+        SwingUtilities.invokeLater(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        chatWindow.append(text);
+                    }
+                }
+        );
+    }
+
+    //let the user type stuff into their box
+    private void ableToType(final boolean tof){
+        SwingUtilities.invokeLater(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        userText.setEditable(tof);
+                    }
+                }
+        );
+    }
+
+
 }
